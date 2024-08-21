@@ -35,7 +35,12 @@ export default function Quiz() {
     return (
       <div id="quiz">
         <div id="question">
-          <QuestionTimer timeout={10000} onTimeout={handleSkipAnswer} />
+          {/* adding a key to the timer component will force react to re-render it when the key changes, creating a new timer for each question */}
+          <QuestionTimer
+            key={activeQuestionIndex}
+            timeout={10000}
+            onTimeout={handleSkipAnswer}
+          />
           <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
           <ul id="answers">
             {shuffledAnswers.map((answer) => (
